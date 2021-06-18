@@ -13,7 +13,7 @@ public interface UserDao extends JpaRepository<UserInfo, Long> {
     public UserInfo findByEmail(String email);
 	@Modifying
 	@Transactional
-	@Query(value="UPDATE User set name = ?2 ,email = ?3, address = ?4, contact_number= ?5 , password = ?6 where user_id = ?1", nativeQuery=true)
+	@Query(value="UPDATE UserInfo set name = ?2 ,email = ?3, address = ?4, contact_number= ?5 , password = ?6 where user_id = ?1", nativeQuery=true)
 	public void updateProfile(long user_id, String name,String email,String address,String contact_number,String password);
 }
 
