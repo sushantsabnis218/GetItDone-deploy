@@ -1,0 +1,30 @@
+#navtab{
+	font-size: x-large;
+	font-family: monospace; 
+	color:black;
+}
+#navigation{
+	background-color:#c0c0c0; 
+}
+#welcome_cont{
+	background-color: #52b4ff;
+	height:90px !important;
+	position:relative;
+	
+}
+#welcome_cont_txt{
+	color:white;
+  font-family: monospace;
+  font-weight:bolder;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  margin: -25px 0 0 -25px;
+}
+#intro_serv{
+	background-color:fuchsia;
+	height:200px !important; 
+}
+body{
+	font-family:monospace;
+}

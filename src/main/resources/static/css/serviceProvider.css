@@ -1,0 +1,5 @@
+#accepted:visited {
+ color:green;
+ pointer-events: none;
+ cursor: default; 
+}

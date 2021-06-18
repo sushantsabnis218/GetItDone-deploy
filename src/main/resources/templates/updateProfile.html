@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>User Profile</title>
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+<link th:rel="stylesheet" th:href="@{/css/signUp.css}"/>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      	<div class="container-fluid">
+          	<a class="navbar-brand" href="#">Get It Done</a>
+          	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              	<span class="navbar-toggler-icon"></span>
+          	</button>
+         	 
+          	<div class="collapse navbar-collapse" id="navbarResponsive">
+              	<ul class="navbar-nav ml-auto">
+                 	 
+                  	<li class="nav-item">
+                 			 <div class="nav nav-links " id="nav-tab" role="tablist" >
+   						 	
+   						 	<form th:action="@{/logout}" method="post">
+   								  <input  class="nav-item nav-link bg-dark" type="submit" value="Sign Out" />
+   						  	</form>
+   						  </div>
+                  	</li>
+                  	
+              	</ul>
+          	</div>
+      	</div>
+  	</nav>
+
+	
+	
+	<div class="container" id="update_page">
+		   
+		      <div class="col-sm-6 col-sm-7 col-lg-5 mx-auto">
+		        <div class="card card-signin my-2">
+		        	
+		          <img class="card-img-top" th:src="@{/images/login2.jpg}" alt="Card image cap">
+		          <div class="card-body">
+		          <h4 class="card-title text-center">Update Profile</h4>
+		            <form th:action="@{/saveNewProfile}" th:object="${user}" method="post">
+		            
+           			<div>
+		                <div>
+		                    <input type="hidden" th:field="*{userId}"  />
+		                </div>
+		            </div>
+		            <div>
+		                <div>
+		                    <input type="hidden" th:field="*{role}"  />
+		                </div>
+		            </div>
+		            <div>
+		                <div>
+		                    <input type="hidden" th:field="*{email}" />
+		                </div>
+		            </div>
+		            
+		              <div class="form-label-group">
+		                <input type="text" id="userName" class="form-control" th:field="*{name}"  autofocus>
+		                <label for="userName">Name</label>
+		                <nobr th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></nobr>
+		              </div>
+		              
+		              
+		            
+		              
+		
+		              <div class="form-label-group">
+		                <input type="password" id="inputPassword" class="form-control" th:field="*{password}" >
+		                <label for="inputPassword">Password</label>
+		                <nobr th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></nobr>
+		              </div>
+		
+		              <div class="form-label-group">
+		                <input type="text" id="contact" class="form-control" th:field="*{contactNumber}"  >
+		                <label for="contact">Contact</label>
+		                <nobr th:if="${#fields.hasErrors('contactNumber')}" th:errors="*{contactNumber}"></nobr>
+		              </div>
+		              
+		              <div class="form-label-group">
+		                <input type="text" id="address" class="form-control" th:field="*{address}"  >
+		                <label for="address">Address</label>
+		                <nobr th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></nobr>
+		              </div>
+		              
+		             
+		              
+		              <input class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Update"/>
+		              
+		            </form>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		  
+		 
+	  
+    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+    
+</body>
+</html>

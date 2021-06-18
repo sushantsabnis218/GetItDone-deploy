@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>List Users</title>
+<link th:href="@{css/table.css}" rel="stylesheet" />
+
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+<link th:rel="stylesheet" th:href="@{/css/admin.css}"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+		
+		
+  
+
+	    <div class="container-fluid" id="welcome_cont">
+	    	<h1 id="welcome_cont_txt">Welcome Admin</h1>
+		</div>
+		<div class="float-right m-2">
+	        <form th:action="@{/logout}" method="post">
+	            <button class='btn btn-success' type="submit" value="Sign Out" >Sign Out</button>
+	        </form>
+	    </div>
+	     <nav class="container-fluid" id="navigation">
+		  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+		    <a class="nav-item nav-link" id="navtab" data-toggle="tab" href="#users" role="tab" aria-controls="nav-home" aria-selected="true">Users</a>
+		    <a class="nav-item nav-link  active" id="navtab" data-toggle="tab" href="#availableServices" role="tab" aria-controls="nav-profile" aria-selected="false">AvailableServices</a>
+		    <a class="nav-item nav-link" id="navtab" data-toggle="tab" href="#userApplication" role="tab" aria-controls="nav-contact" aria-selected="false">ServiceApplications</a>
+		  </div>
+		 </nav>
+		<div class="tab-content" id="nav-tabContent">
+		    <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="nav-home-tab">
+		    	<div class="container-fluid">
+			        <h1>List of Users</h1>	
+				    <div>
+				    <input class="w-25 form-control" id="myInput2" type="text" placeholder="Type User Name...">
+				        <table id="usersTable" class="table table-bordered" style="width:100%">
+				            <thead >
+				                <tr>
+				                    <th>User ID</th>
+				                    <th>E-mail</th>
+				                    <th>Name</th>
+				                    <th>Contact</th>
+				                    <th>Address</th>
+				                    <th>Active Status</th>
+				                </tr>
+				            </thead>
+				            <tbody>
+				                <tr th:each="user: ${listUsers}">
+				                    <td  th:text="${user.userId}">User ID</td>
+				                    <td th:text="${user.email}">E-mail</td>
+				                    <td th:text="${user.name}">First Name</td>
+				                    <td th:text="${user.contactNumber}">ContactNumber</td>
+				                    <td class="text-capitalize" th:text="${user.address}">Address</td>
+				                    <td th:text="${user.activeStatus}">Active Status</td>
+				                </tr>
+				            </tbody>
+				        </table>
+				    </div>
+				   </div>
+		    </div>
+		    <div  class="tab-pane fade  show active" id="availableServices"  role="tabpanel" aria-labelledby="nav-profile-tab" >
+			  	<div class="container-fluid" id="intro_service" style="margin-top:2%;margin-bottom:2%;">
+				    <h1>Introduce New Service</h1>
+			    	<div >
+			    		<form th:action="@{/addService}" th:object="${availableServices}" method="post">
+				        	<div class="w-25 form-label-group">
+				                
+				                <input class="form-control" type="text" th:field="*{title}" placeholder="Add a service" required/>
+				                <button class="btn btn-primary" style="margin-top:5px;" type="submit" >Add Service</button>
+				                <nobr th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></nobr>
+				            </div>
+			        	</form>
+				    </div>
+			    </div>
+			    <br/>
+			    <div class="container-fluid" >
+			    <h1>Search Services</h1>
+			    <input class="w-25 form-control" id="myInput1" type="text" placeholder="Type Service Title...">
+			        <table id="availableServicesTable" class="table table-bordered" style="width:100%">
+			            <thead >
+			                <tr>
+			                    <th>Title</th>
+			                    <th>Avg_Cost</th>
+			                    
+			                    <th>Delete</th>
+			                    
+			                </tr>
+			            </thead>
+			            <tbody>
+			                <tr th:each="service: ${listAvailableServices}">
+			                    <td class="text-capitalize" th:text="${service.title}"></td>
+			                    <td th:text="${service.avgCost}"></td>
+			                    
+			                    <td >
+			                    	<form th:action="@{'/deleteService'(serviceId=${service.serviceId})}" method="post" >
+			                    		<input class="btn btn-warning" type="submit" value="Delete"></input>
+			                    	</form>
+			                    </td>
+			                </tr>
+			            </tbody>
+			        </table>
+			    </div>
+			      
+			    
+		    </div>
+		     <div  class="tab-pane fade" id="userApplication"  role="tabpanel" aria-labelledby="nav-profile-tab">
+		     	<div class="container-fluid">
+				     <h1>Service Provider's Application For New Service</h1>
+				     <div>
+				     <input class="w-25 form-control" id="myInput3" type="text" placeholder="Type Service Name...">
+				        <table id="userApplicationTable" class="table table-bordered" style="width:100%">
+				            <thead >
+				                <tr>
+				                	
+				                    <th>ServiceName</th>
+				                    <th>UserName</th>
+				                    <th>AreaOfService</th>
+				                 	<th>CostPerHour</th>
+				                 	<th>AverageRating</th>
+									<th>Status</th>                    
+				                </tr>
+				            </thead>
+				            <tbody>
+				                <tr th:each="providedService: ${listProvided}">
+				                	 
+				                    <td class="text-capitalize" th:text="${providedService.serviceId.title}"></td>
+				                    <td th:text="${providedService.userId.name}"></td>
+				                    <td class="text-capitalize" th:text="${providedService.areaOfService[0]}"></td>
+									<td th:text="${providedService.costPerHour}"></td>
+									<td th:text="${providedService.avgRating}"></td>
+									<td>     
+										<form th:action="@{'/toggleStatus'(providedServiceId=${providedService.providedServiceId},serviceId=${providedService.serviceId.serviceId})}" method=post>
+					            			<input class="btn btn-warning" type="submit" th:name="currentStatus"  th:value="${providedService.activeStatus}" />
+					        			</form>              
+				        			</td>
+				                </tr>
+				                
+				            </tbody>
+				        </table>
+				    </div>
+				  </div>
+		     </div>
+		     
+		    </div>
+		    
+		    <div class="toast" id="myToast" style="position: absolute; top: 0; right: 0;" data-delay=11000 th:if="${newServiceNoti} or ${deleteServiceNoti} or ${errorDeleteServiceNoti} or ${AlreadyExists} or ${toggleStatusNoti}">
+		        <div class="toast-header">
+		            <div   th:text="${newServiceNoti}" th:if="${newServiceNoti}"  ></div>
+		            <div   th:text="${deleteServiceNoti}" th:if="${deleteServiceNoti}"></div>
+					<div th:text="${errorDeleteServiceNoti}" th:if="${errorDeleteServiceNoti}"></div>
+					<div th:text="${AlreadyExists}" th:if="${AlreadyExists}"  ></div>
+					<div  th:text="${toggleStatusNoti}" th:if="${toggleStatusNoti}" ></div>
+		            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
+		                <span aria-hidden="true">&times;</span>
+		            </button>
+				  </div>		   
+    		</div>
+   
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<script>
+		$(document).ready(function(){
+		  $("#myInput1").on("keyup", function() {
+		    var value = $(this).val().toLowerCase();
+		    $("#availableServicesTable tr").filter(function() {
+		      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		    });
+		  });
+		});
+		$(document).ready(function(){
+			  $("#myInput2").on("keyup", function() {
+			    var value = $(this).val().toLowerCase();
+			    $("#usersTable tr").filter(function() {
+			      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			    });
+			  });
+			});
+		$(document).ready(function(){
+			  $("#myInput3").on("keyup", function() {
+			    var value = $(this).val().toLowerCase();
+			    $("#userApplicationTable tr").filter(function() {
+			      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			    });
+			  });
+			});
+		$(document).ready(function(){
+	          $("#myToast").toast('show');
+	          
+	    });
+	    
+	</script>
+
+</body>
+</html>

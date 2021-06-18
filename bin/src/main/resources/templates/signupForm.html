@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Sign Up</title>
+</head>
+<body>
+	<div>
+        <div>
+            <h1>Registration - Sign Up</h1>
+        </div>
+        <form th:action="@{/process_registeration}" th:object="${user}"
+            method="post">
+        <div>
+        	<div>
+                <label>Name: </label>
+                <div>
+                    <input type="text" th:field="*{name}"
+                            required />
+                </div>
+            </div>
+            <div>
+                <label>E-mail: </label>
+                <div>
+                    <input type="email" th:field="*{email}" required />
+                </div>
+            </div>
+             
+            <div>
+                <label>Password: </label>
+                <div>
+                    <input type="password" th:field="*{password}"
+                            required/>
+                </div>
+            </div>
+             <div>
+                <label>Contact No.: </label>
+                <div>
+                    <input type="text" th:field="*{contactNumber}"
+                            required />
+                </div>
+            </div>
+            <div>
+                <label>Address: </label>
+                <div>
+                    <input type="text" th:field="*{address}"
+                            required />
+                </div>
+            </div>
+            <div>
+                <label>Address: </label>
+                <div>
+                   <select th:field="*{role}">
+					  <option value="SERVICE_SEEKER" selected>Service Seeker</option>
+					  <option value="SERVICE_PROVIDER">Service Provider</option>
+				   </select>
+                </div>
+            </div>
+            
+
+            <div>
+                <button type="submit" >Sign Up</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</body>
+</html>

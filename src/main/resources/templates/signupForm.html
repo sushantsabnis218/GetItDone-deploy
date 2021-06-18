@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Sign Up</title>
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+<link th:rel="stylesheet" th:href="@{/css/signUp.css}"/>
+</head>
+<body>
+	
+    <div class="container" id="login_page">
+		   
+		      <div class="col-sm-6 col-sm-7 col-lg-5 mx-auto">
+		        <div class="card card-signin my-2">
+		        	
+		          <img class="card-img-top" th:src="@{/images/login2.jpg}" alt="Card image cap">
+		          <div class="card-body">
+		          <h4 class="card-title text-center">Sign Up</h4>
+		            <form class="form-signin" th:action="@{/process_registeration}" th:object="${user}" method="post">
+		              <div class="form-label-group">
+		                <input type="text" id="userName" class="form-control" th:field="*{name}"  autofocus>
+		                <label for="userName">Name</label>
+		                <nobr th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></nobr>
+		              </div>
+		              
+		              
+		            
+		              <div class="form-label-group">
+		                <input type="email" id="inputEmail" class="form-control" th:field="*{email}"  >
+		                <label for="inputEmail">Email address</label>
+		                <nobr th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></nobr>
+		              </div>
+		
+		              <div class="form-label-group">
+		                <input type="password" id="inputPassword" class="form-control" th:field="*{password}" >
+		                <label for="inputPassword">Password</label>
+		                <nobr th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></nobr>
+		              </div>
+		
+		              <div class="form-label-group">
+		                <input type="text" id="contact" class="form-control" th:field="*{contactNumber}"  >
+		                <label for="contact">Contact</label>
+		                <nobr th:if="${#fields.hasErrors('contactNumber')}" th:errors="*{contactNumber}"></nobr>
+		              </div>
+		              
+		              <div class="form-label-group">
+		                <input type="text" id="address" class="form-control" th:field="*{address}"  >
+		                <label for="address">Address</label>
+		                <nobr th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></nobr>
+		              </div>
+		              
+		              <div class="form-label-group">
+			               <select id="select_list" class="form-control" th:field="*{role}">
+	 						<option value="ROLE_SERVICE_SEEKER" selected>Service Seeker</option>
+						  <option value="ROLE_SERVICE_PROVIDER">Service Provider</option>
+						  </select>
+		             </div>
+		              
+		              <input class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Register"/>
+		              <br>
+		              <nobr>Already have an account?<a th:href="@{/login}">   &nbsp LogIn </a></nobr>
+		            </form>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		  
+		 
+	  
+    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+    
+    
+</body>
+</html>

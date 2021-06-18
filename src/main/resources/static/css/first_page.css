@@ -1,0 +1,22 @@
+.bg-img-header{
+  /* The image used */
+  background-image: url("./images/landing_page1.jpg") !important;
+
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+img{
+	object-fit:contain !important;
+	height: 100%; width: 100%;
+	display:block;
+}
