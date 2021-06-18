@@ -26,7 +26,7 @@ public class BookingDetails {
 	public BookingDetails(){
 		
 	}
-	public BookingDetails(ServicesProvided service,String address,LocalDateTime bookingTime,UserInfo user){
+	public BookingDetails(ServicesProvided service,String address,LocalDateTime bookingTime,User user){
 		this.userId = user;
 		this.providedServiceId  = service;
 		this.address = address;
@@ -43,7 +43,7 @@ public class BookingDetails {
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "userId", nullable = false)
-	private UserInfo userId;
+	private User userId;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
@@ -78,11 +78,11 @@ public class BookingDetails {
 		this.bookingId = bookingId;
 	}
 
-	public UserInfo getUserId() {
+	public User getUserId() {
 		return userId;
 	}
 
-	public void setUserId(UserInfo userId) {
+	public void setUserId(User userId) {
 		this.userId = userId;
 	}
 

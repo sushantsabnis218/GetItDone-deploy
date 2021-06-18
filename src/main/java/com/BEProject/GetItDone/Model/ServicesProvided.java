@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import com.BEProject.GetItDone.Model.UserInfo.Status;
+import com.BEProject.GetItDone.Model.User.Status;
 
 @Entity
 @Table(name="ServicesProvided")
@@ -25,7 +25,7 @@ public class ServicesProvided {
 	public ServicesProvided(){
 		
 	}
-	public ServicesProvided(UserInfo user,AvailableServices service,double costPerHour,String areaOfService){
+	public ServicesProvided(User user,AvailableServices service,double costPerHour,String areaOfService){
 		this.userId = user;
 		this.serviceId = service;
 		this.costPerHour = costPerHour;
@@ -44,7 +44,7 @@ public class ServicesProvided {
 	@ManyToOne( fetch = FetchType.LAZY, optional = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "userId", nullable = false)
-	private UserInfo userId;
+	private User userId;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
@@ -78,10 +78,10 @@ public class ServicesProvided {
 		this.providedServiceId = providedServiceId;
 	}
 	
-	public UserInfo getUserId() {
+	public User getUserId() {
 		return userId;
 	}
-	public void setUserId(UserInfo userId) {
+	public void setUserId(User userId) {
 		this.userId = userId;
 	}
 	public AvailableServices getServiceId() {

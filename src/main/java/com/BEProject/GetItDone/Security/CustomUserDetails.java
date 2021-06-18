@@ -8,13 +8,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.BEProject.GetItDone.Model.UserInfo;
-import com.BEProject.GetItDone.Model.UserInfo.Role;
+import com.BEProject.GetItDone.Model.User;
+import com.BEProject.GetItDone.Model.User.Role;
 
 public class CustomUserDetails  implements UserDetails {
-	private UserInfo user;
+	private User user;
 	
-	public CustomUserDetails(UserInfo user) {
+	public CustomUserDetails(User user) {
 		this.user = user;
 	}
 	@Override
