@@ -9,11 +9,11 @@ import org.springframework.data.jpa.repository.Query;
 import com.BEProject.GetItDone.Model.User;
 
 public interface UserDao extends JpaRepository<User, Long> {
-	@Query("SELECT user FROM User user WHERE user.email = ?1")
+	@Query("SELECT * FROM  user WHERE email = ?1")
     public User findByEmail(String email);
 	@Modifying
 	@Transactional
-	@Query(value="UPDATE User set name = ?2 ,email = ?3, address = ?4, contact_number= ?5 , password = ?6 where user_id = ?1", nativeQuery=true)
+	@Query(value="UPDATE user set name = ?2 ,email = ?3, address = ?4, contact_number= ?5 , password = ?6 where user_id = ?1", nativeQuery=true)
 	public void updateProfile(long user_id, String name,String email,String address,String contact_number,String password);
 }
 
