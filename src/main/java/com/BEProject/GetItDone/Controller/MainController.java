@@ -22,7 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.BEProject.GetItDone.Model.AvailableServices;
 import com.BEProject.GetItDone.Model.BookingDetails;
 import com.BEProject.GetItDone.Model.ServicesProvided;
-import com.BEProject.GetItDone.Model.User;
+import com.BEProject.GetItDone.Model.UserInfo;
 import com.BEProject.GetItDone.Service.AvailableTaskServices;
 import com.BEProject.GetItDone.Service.BookingService;
 import com.BEProject.GetItDone.Service.ProviServices;
@@ -50,12 +50,12 @@ public class MainController {
 	 }
 	 @GetMapping("/register")
 	 public String showRegistrationForm(Model model) {
-	     model.addAttribute("user", new User());
+	     model.addAttribute("user", new UserInfo());
 	     return "signupForm";
 	 }
 	 
 	 @PostMapping("/process_registeration")
-	 public String processRegister(@Valid User user,  Errors error, RedirectAttributes redirAttrs) {
+	 public String processRegister(@Valid UserInfo user,  Errors error, RedirectAttributes redirAttrs) {
 		 if (null != error && error.getErrorCount() > 0) {
 		     return "signupForm";
 	        }
@@ -63,7 +63,7 @@ public class MainController {
 	         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	   	     String encodedPassword = passwordEncoder.encode(user.getPassword());
 	   	     user.setPassword(encodedPassword);
-	   	     User tempUser = new User(user);
+	   	     UserInfo tempUser = new UserInfo(user);
 	   	     try{
 	   	     	userService.saveUser(tempUser);
 	   	     redirAttrs.addFlashAttribute("success", "Welcome to the GetItDone Community !");
@@ -86,7 +86,7 @@ public class MainController {
 	 public String viewServiceSeekerDashboard(Model model, HttpSession session) {
 		 
 		String username=SecurityContextHolder.getContext().getAuthentication().getName();
-		User user=userService.getByEmail(username);
+		UserInfo user=userService.getByEmail(username);
 		session.setAttribute("user", user);
 		List<ServicesProvided> allServices = proviServices.getAllServices();
 		model.addAttribute("listAllServices",allServices);
@@ -98,7 +98,7 @@ public class MainController {
 	 @GetMapping("/serviceProviderDashboard")
 	 public String ViewserviceProviderrDashboard(Model model, HttpSession session) {
 		String username=SecurityContextHolder.getContext().getAuthentication().getName();
-		User user=userService.getByEmail(username);
+		UserInfo user=userService.getByEmail(username);
 		session.setAttribute("user", user);
 		List<AvailableServices> listOfAvailableServices = availableTaskServices.getAvailableServices();
 		model.addAttribute("listOfAvailableServices",listOfAvailableServices);
@@ -111,7 +111,7 @@ public class MainController {
 	 
 	 @GetMapping("/adminDashboard")
 	 public String viewAdminDashBoard(Model model, HttpSession session) {
-	     List<User> listUsers = userService.listOfUsers();
+	     List<UserInfo> listUsers = userService.listOfUsers();
 	     model.addAttribute("listUsers", listUsers);
 	     String userName=SecurityContextHolder.getContext().getAuthentication().getName();
 		 session.setAttribute("userName", userName);
@@ -161,7 +161,7 @@ public class MainController {
 			 					  RedirectAttributes redirAttrs
 			 					   ) {
 		
-		 User user = userService.getUserById(userId);
+		 UserInfo user = userService.getUserById(userId);
 		 AvailableServices serviceTemp = availableTaskServices.getServiceByServiceId(service);
 		 ServicesProvided servicesProvided = new ServicesProvided(user,serviceTemp,serviceCostPerHour,serviceAreaOfService);
 		 proviServices.saveService(servicesProvided);
@@ -209,7 +209,7 @@ public class MainController {
 			 ) {
 		 
 		 String username=SecurityContextHolder.getContext().getAuthentication().getName();
-		 User user=userService.getByEmail(username);
+		 UserInfo user=userService.getByEmail(username);
 		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
 		 LocalDateTime dateTime = LocalDateTime.parse(bookingTime, formatter);
 		 ServicesProvided tempServiceForBooking = proviServices.getProvidedService(Long.parseLong(serviceForBooking));
@@ -248,13 +248,13 @@ public class MainController {
 	 @PostMapping("/updateUserProfile")
 	 public String updateUserProfile(Model model) {
 		 String username=SecurityContextHolder.getContext().getAuthentication().getName();
-		 User user=userService.getByEmail(username);
+		 UserInfo user=userService.getByEmail(username);
 	     model.addAttribute("user", user);
 	     
 	     return "updateProfile";
 	 }
 	 @PostMapping("/saveNewProfile")
-	 public String saveNewProfile(@Valid User user,  Errors error, RedirectAttributes redirAttrs) {
+	 public String saveNewProfile(@Valid UserInfo user,  Errors error, RedirectAttributes redirAttrs) {
 		 if (null != error && error.getErrorCount() > 0) {
 		     return "updateProfile";
 	        }
@@ -263,7 +263,7 @@ public class MainController {
 	         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	   	     String encodedPassword = passwordEncoder.encode(user.getPassword());
 	   	     user.setPassword(encodedPassword);
-	   	     User tempUser = new User(user);
+	   	     UserInfo tempUser = new UserInfo(user);
 	   	     
 	   	     try{
 	   	     	userService.updateUserProfile(user.getUserId(), tempUser);

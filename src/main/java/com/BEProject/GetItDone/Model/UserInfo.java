@@ -19,8 +19,8 @@ import javax.validation.constraints.Size;
 
 
 @Entity
-@Table(name="User")
-public class User implements Serializable{
+@Table(name="UserInfo")
+public class UserInfo implements Serializable{
 	enum Status{ ACTIVE, INACTIVE };
 	public enum Role{ROLE_SERVICE_SEEKER, ROLE_SERVICE_PROVIDER};
 	@Id
@@ -56,10 +56,10 @@ public class User implements Serializable{
 	
 	
 	
-	public User() {
+	public UserInfo() {
 		
 	}
-	public User(User user) {
+	public UserInfo(UserInfo user) {
 		this.name = user.name;
 		this.email = user.email;
 		this.address = user.address;
