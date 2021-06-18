@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.BEProject.GetItDone.Model.User;
 
 public interface UserDao extends JpaRepository<User, Long> {
-	@Query("SELECT * FROM User WHERE user.email = ?1")
+	@Query("SELECT user FROM User user WHERE user.email = ?1")
     public User findByEmail(String email);
 	@Modifying
 	@Transactional
