@@ -20,7 +20,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="User")
-public class User implements Serializable{
+public class User{
 	enum Status{ ACTIVE, INACTIVE };
 	public enum Role{ROLE_SERVICE_SEEKER, ROLE_SERVICE_PROVIDER};
 	@Id
