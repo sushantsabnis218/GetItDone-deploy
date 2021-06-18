@@ -271,7 +271,7 @@ public class MainController {
 	   	     }catch(Exception E) {
 	   	    	redirAttrs.addFlashAttribute("updateError", "Error! Profile cannot be updated");
 	   	     }
-	   	     System.out.println(tempUser.getRole());
+	   	     //System.out.println(tempUser.getRole());
 	   	     if(tempUser.getRole().toString().equals("ROLE_SERVICE_SEEKER")) {
 	   	    	 
 	   	    	 return "redirect:/serviceSeekerDashboard";
