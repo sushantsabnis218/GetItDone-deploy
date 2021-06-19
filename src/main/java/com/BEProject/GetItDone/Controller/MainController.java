@@ -185,7 +185,7 @@ public class MainController {
 		
 		 UserInfo user = userService.getUserById(userId);
 		 AvailableServices serviceTemp = availableTaskServices.getServiceByServiceId(service);
-		 System.out.println(serviceAreaOfService);
+		 //System.out.println(serviceAreaOfService);
 		 
 		 try {
 			 ServicesProvided tempService = proviServices.getServiceByServiceAndUserId(String.valueOf(service),userId);

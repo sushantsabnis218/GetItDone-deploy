@@ -1,7 +1,5 @@
 package com.BEProject.GetItDone.Model;
 
-import java.util.HashSet;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -17,7 +15,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import com.BEProject.GetItDone.Model.UserInfo.Status;
 
 @Entity
 @Table(name="ServicesProvided")
@@ -29,8 +26,7 @@ public class ServicesProvided {
 		this.userId = user;
 		this.serviceId = service;
 		this.costPerHour = costPerHour;
-		this.areaOfService = new HashSet<String>(); 		
-		this.areaOfService.add(areaOfService);
+		this.areaOfService = areaOfService; 	
 		this.avgRating = 0.0;
 		this.activeStatus=Status.INACTIVE;
 	}
@@ -58,7 +54,7 @@ public class ServicesProvided {
 	private double costPerHour;
 	
 	@Column(name="areaOfService", nullable=false)
-	private HashSet<String> areaOfService;
+	private String areaOfService;
 
 	@Column(columnDefinition = "varchar(10)", name="activeStatus", nullable=false)
 	@Enumerated(value = EnumType.STRING)
@@ -102,10 +98,10 @@ public class ServicesProvided {
 	public void setCostPerHour(double costPerHour) {
 		this.costPerHour = costPerHour;
 	}
-	public HashSet<String> getAreaOfService() {
+	public String getAreaOfService() {
 		return areaOfService;
 	}
-	public void setAreaOfService(HashSet<String> areaOfService) {
+	public void setAreaOfService(String areaOfService) {
 		this.areaOfService = areaOfService;
 	}
 	
