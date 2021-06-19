@@ -290,7 +290,7 @@ public class MainController {
 	     return "updateProfile";
 	 }
 	 @PostMapping("/saveNewProfile")
-	 public String saveNewProfile(@Valid UserInfo user,  Errors error, RedirectAttributes redirAttrs) {
+	 public String saveNewProfile(@Valid @ModelAttribute("user") UserInfo user,  Errors error, RedirectAttributes redirAttrs) {
 		 if (null != error && error.getErrorCount() > 0) {
 		     return "updateProfile";
 	        }

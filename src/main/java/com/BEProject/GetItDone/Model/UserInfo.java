@@ -44,7 +44,7 @@ public class UserInfo implements Serializable{
 	@Column(name="contactNumber", length=15, nullable=false,unique=true)
 	@NotNull
     @Size(max = 10, min = 10, message = "{Size.User.contactNumber}")
-    @Pattern(regexp = "[7-9][0-9]{9}", message = "{Pattern.User.contactNumber}")
+    @Pattern(regexp = "[6-9][0-9]{9}", message = "{Pattern.User.contactNumber}")
 	private String contactNumber;
 	@Column(columnDefinition = "varchar(10)", name="activeStatus", nullable=false)
 	@Enumerated(value = EnumType.STRING)

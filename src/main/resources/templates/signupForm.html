@@ -18,7 +18,7 @@
 		          <h4 class="card-title text-center">Sign Up</h4>
 		            <form class="form-signin" th:action="@{/process_registeration}" th:object="${user}" method="post">
 		              <div class="form-label-group">
-		                <input type="text" id="userName" class="form-control" th:field="*{name}"  autofocus>
+		                <input type="text" id="userName" class="form-control" th:field="*{name}"  required autofocus>
 		                <label for="userName">Name</label>
 		                <nobr th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></nobr>
 		              </div>
@@ -26,25 +26,25 @@
 		              
 		            
 		              <div class="form-label-group">
-		                <input type="email" id="inputEmail" class="form-control" th:field="*{email}"  >
+		                <input type="email" id="inputEmail" class="form-control" th:field="*{email}" required >
 		                <label for="inputEmail">Email address</label>
 		                <nobr th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></nobr>
 		              </div>
 		
 		              <div class="form-label-group">
-		                <input type="password" id="inputPassword" class="form-control" th:field="*{password}" >
+		                <input type="password" id="inputPassword" class="form-control" th:field="*{password}" required>
 		                <label for="inputPassword">Password</label>
 		                <nobr th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></nobr>
 		              </div>
 		
 		              <div class="form-label-group">
-		                <input type="text" id="contact" class="form-control" th:field="*{contactNumber}"  >
+		                <input type="text" id="contact" class="form-control" th:field="*{contactNumber}"  required>
 		                <label for="contact">Contact</label>
 		                <nobr th:if="${#fields.hasErrors('contactNumber')}" th:errors="*{contactNumber}"></nobr>
 		              </div>
 		              
 		              <div class="form-label-group">
-		                <input type="text" id="address" class="form-control" th:field="*{address}"  >
+		                <input type="text" id="address" class="form-control" th:field="*{address}"  required>
 		                <label for="address">Address</label>
 		                <nobr th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></nobr>
 		              </div>
