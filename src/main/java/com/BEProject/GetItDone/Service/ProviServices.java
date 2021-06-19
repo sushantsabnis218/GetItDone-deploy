@@ -45,4 +45,18 @@ public class ProviServices {
 	public ServicesProvided getProviderByServiceId(long providedServiceId) {
 		return servicesProvidedDao.getProviderByServiceId(providedServiceId);
 	}
+	public ServicesProvided getServiceByServiceId(String serviceId) {
+		long serviceIdtemp = Long.parseUnsignedLong(String.valueOf(serviceId));
+		return servicesProvidedDao.getOne(serviceIdtemp);
+	}
+	public void removeService(long serviceIdToBeDeleted) {
+		servicesProvidedDao.deleteById(serviceIdToBeDeleted);
+	}
+	 public ServicesProvided getServiceByServiceAndUserId(String serviceId, long userId) {
+			long serviceIdtemp = Long.parseUnsignedLong(String.valueOf(serviceId));
+			return servicesProvidedDao.getServiceByServiceAndUserId(serviceIdtemp, userId);
+		}
+	 public void updateProvidedService(long provided_service_id, String area_of_service, double cost_per_hour) {
+		 servicesProvidedDao.updateProvidedService(provided_service_id, area_of_service, cost_per_hour);
+	 }
 }

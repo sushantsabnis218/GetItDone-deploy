@@ -37,4 +37,12 @@ public interface ServicesProvidedDao extends JpaRepository<ServicesProvided, Lon
 	
 	@Query(value="select * from services_provided where provided_service_id = ?1 ", nativeQuery=true)
 	public ServicesProvided getProviderByServiceId(long provided_service_id);
+	
+	@Query(value="select * from services_provided where user_id = ?2 and service_id = ?1", nativeQuery=true)
+	public ServicesProvided getServiceByServiceAndUserId(long service_id, long user_id);
+	
+	@Modifying
+	@Transactional
+	@Query(value="UPDATE services_provided set area_of_service=?2, cost_per_hour=?3 where provided_service_id  = ?1", nativeQuery=true)
+	public void updateProvidedService(long provided_service_id, String area_of_service, double cost_per_hour);
 }

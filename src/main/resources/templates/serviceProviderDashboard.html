@@ -116,6 +116,7 @@
 	   	                 	<th>AvgRating</th>
 	   	                 	<th>CostPerHour</th>
 	   	                 	<th>AreaOfService</th>
+	   	                	<th>Delete</th>
 	   	                	 
 	   	             	</tr>
 	   	         	</thead>
@@ -124,7 +125,12 @@
 	   	                 	<td th:text="${service.serviceId.title}"></td>
 	   	                 	<td th:text="${service.avgRating}"></td>
 	   	                 	<td th:text="${service.costPerHour}"></td>
-	   	                 	<td th:text="${service.areaOfService[0]}"></td>
+	   	                 	<td th:text="${service.areaOfService}"></td>
+	   	                 	<td >
+			                    	<form th:action="@{'/deleteProvidedService'(providedServiceId=${service.providedServiceId}, serviceId=${service.serviceId.serviceId})}" method="post" >
+			                    		<input class="btn btn-warning" type="submit" value="Delete"></input>
+			                    	</form>
+			                 </td>
 	   	             	</tr>
 	   	         	</tbody>
 	   	     	</table>
@@ -191,12 +197,14 @@
 	    
 	    </div>
 	    
-	    <div class="toast" id="myToast" style="position: absolute; top: 0; right: 0;" data-delay=11500 th:if="${success} or ${updateError} or ${serviceApplicationNoti} or ${changeOrderStatusNoti}">
+	    <div class="toast" id="myToast" style="position: absolute; top: 0; right: 0;" data-delay=11500 th:if="${success} or ${updateError} or ${serviceApplicationNoti} or ${changeOrderStatusNoti} or ${deleteServiceNoti} or ${ErrorDeleteServiceNoti}">
 	   	     	<div class="toast-header">
 	   	         	<div   th:text="${success}" th:if="${success}"  ></div>
 	   	         	<div   th:text="${updateError}" th:if="${updateError}"></div>
 	   				 <div th:text="${serviceApplicationNoti}" th:if="${serviceApplicationNoti}"></div>
 	   				 <div th:text="${changeOrderStatusNoti}" th:if="${changeOrderStatusNoti}"  ></div>
+	   				 <div th:text="${deleteServiceNoti}" th:if="${deleteServiceNoti}"  ></div>
+	   				 <div th:text="${ErrorDeleteServiceNoti}" th:if="${ErrorDeleteServiceNoti}"  ></div>
 	   	         	<button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
 	   	             	<span aria-hidden="true">&times;</span>
 	   	         	</button>

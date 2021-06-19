@@ -96,7 +96,7 @@
    			                 	<td th:text="${service.serviceId.title}"></td>
    			                 	<td th:text="${service.avgRating}"></td>
    			                 	<td th:text="${service.costPerHour}"></td>
-   			                 	<td th:text="${service.areaOfService[0]}"></td>
+   			                 	<td th:text="${service.areaOfService}"></td>
    			                 	<td th:text="${service.userId.name}"></td>
    			                 	<td th:text="${service.userId.contactNumber}"></td>
    			                	<td> <form th:action="@{'/bookService'(serviceProviderId=${service.providedServiceId})}" method="post" >

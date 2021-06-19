@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.BEProject.GetItDone.Model.AvailableServices;
 import com.BEProject.GetItDone.Model.BookingDetails;
 import com.BEProject.GetItDone.Model.ServicesProvided;
+
 import com.BEProject.GetItDone.Model.UserInfo;
 import com.BEProject.GetItDone.Service.AvailableTaskServices;
 import com.BEProject.GetItDone.Service.BookingService;
@@ -150,7 +151,28 @@ public class MainController {
 		 
 		 return "redirect:adminDashboard";
 	 }
-	 
+	 @PostMapping("/deleteProvidedService")
+	 public String deleteProvidedService(@RequestParam("providedServiceId") long serviceIdToBeDeleted, @RequestParam("serviceId") String serviceId,RedirectAttributes redirAttrs){
+		 ServicesProvided tempService = proviServices.getServiceByServiceId(String.valueOf(serviceIdToBeDeleted));
+		 
+		 try {
+			 proviServices.removeService(serviceIdToBeDeleted);
+			 redirAttrs.addFlashAttribute("deleteServiceNoti", "Deleted Service : "+ tempService.getServiceId().getTitle());
+		 }
+		 catch(Exception E){
+			 
+			 redirAttrs.addFlashAttribute("ErrorDeleteServiceNoti", "Error occured while deleting service : "+ tempService.getServiceId().getTitle());
+		 }
+		 try {
+			 double tempAvgCost = proviServices.getAvgCost(Long.parseLong(serviceId));
+		 	 availableTaskServices.updateAvgCost(Long.parseLong(serviceId), tempAvgCost);
+		 }
+		 catch(Exception E) {
+			 availableTaskServices.updateAvgCost(Long.parseLong(serviceId), 0);
+		 }
+		 
+		 return "redirect:serviceProviderDashboard";
+	 }
 	 @PostMapping("/applyForService")
 	 public String applyForService(
 			 					   @RequestParam("userId") long userId,
@@ -163,9 +185,22 @@ public class MainController {
 		
 		 UserInfo user = userService.getUserById(userId);
 		 AvailableServices serviceTemp = availableTaskServices.getServiceByServiceId(service);
-		 ServicesProvided servicesProvided = new ServicesProvided(user,serviceTemp,serviceCostPerHour,serviceAreaOfService);
-		 proviServices.saveService(servicesProvided);
-		 redirAttrs.addFlashAttribute("serviceApplicationNoti", "Applied for service : "+ serviceTemp.getTitle());
+		 System.out.println(serviceAreaOfService);
+		 
+		 try {
+			 ServicesProvided tempService = proviServices.getServiceByServiceAndUserId(String.valueOf(service),userId);
+			 proviServices.updateProvidedService(tempService.getProvidedServiceId(), serviceAreaOfService, serviceCostPerHour);
+			 double tempAvgCost = proviServices.getAvgCost(Long.parseLong(service));
+		 	 availableTaskServices.updateAvgCost(Long.parseLong(service), tempAvgCost);
+			 redirAttrs.addFlashAttribute("serviceApplicationNoti", "Updated already existing service : "+ serviceTemp.getTitle());
+		 }
+		 catch(Exception E) {
+			 //System.out.println(E);
+			 ServicesProvided servicesProvided = new ServicesProvided(user,serviceTemp,serviceCostPerHour,serviceAreaOfService);
+			 proviServices.saveService(servicesProvided);
+			 redirAttrs.addFlashAttribute("serviceApplicationNoti", "Applied for service : "+ serviceTemp.getTitle()); 
+		 }
+		 
 		 return "redirect:serviceProviderDashboard";
 		 
 	 }
