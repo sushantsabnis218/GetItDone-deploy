@@ -18,7 +18,7 @@
 		          <h4 class="card-title text-center">Sign Up</h4>
 		            <form class="form-signin" th:action="@{/process_registeration}" th:object="${user}" method="post">
 		              <div class="form-label-group">
-		                <input type="text" id="userName" class="form-control" th:field="*{name}" >
+		                <input type="text" id="userName" class="form-control" th:field="*{name}"  autofocus>
 		                <label for="userName">Name</label>
 		                <nobr th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></nobr>
 		              </div>
