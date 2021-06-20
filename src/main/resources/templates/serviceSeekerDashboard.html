@@ -7,7 +7,6 @@
 <link th:href="@{/css/table.css}" rel="stylesheet" />
 <link th:href="@{/css/serviceSeeker.css}" rel="stylesheet" />
 <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -26,11 +25,11 @@
                  	 
                   	<li class="nav-item">
                  			 <div class="nav nav-links " id="nav-tab" role="tablist" >
-   						 	<a class="nav-item nav-link" style="color:white; margin-right: 10px;" id="nav-home-tab" data-toggle="tab" href="#bookings" role="tab" aria-controls="nav-home" aria-selected="true">MyBookings</a>
-   						 	<a class="nav-item nav-link active" style="color:white; margin-right: 10px;" id="nav-profile-tab" data-toggle="tab" href="#availableServices" role="tab" aria-controls="nav-profile" aria-selected="false">AvailableServices</a>
-   						 	<a class="nav-item nav-link" id="nav-contact-tab" style="color:white; margin-right: 10px;" data-toggle="tab" href="#userProfile" role="tab" aria-controls="nav-contact" aria-selected="false">MyProfile</a>
+   						 	<a class="nav-item nav-link btn" style="color:white; margin-right: 10px;" id="nav-home-tab" data-toggle="tab" href="#bookings" role="tab" aria-controls="nav-home" aria-selected="true">MyBookings</a>
+   						 	<a class="nav-item nav-link btn active" style="color:white; margin-right: 10px;" id="nav-profile-tab" data-toggle="tab" href="#availableServices" role="tab" aria-controls="nav-profile" aria-selected="false">AvailableServices</a>
+   						 	<a class="nav-item nav-link btn" id="nav-contact-tab" style="color:white; margin-right: 10px;" data-toggle="tab" href="#userProfile" role="tab" aria-controls="nav-contact" aria-selected="false">MyProfile</a>
    						 	<form th:action="@{/logout}" method="post">
-   								  <input  class="nav-item nav-link bg-dark" type="submit" value="Sign Out" />
+   								  <input  class="nav-item nav-link btn" stye="color: white " type="submit" value="Sign Out" />
    						  	</form>
    						  </div>
                   	</li>
@@ -54,7 +53,7 @@
    	  	<div class="tab-content" id="nav-tabContent">
    		 	 
    		  	<div class="tab-pane fade" id="userProfile" role="tabpanel" aria-labelledby="nav-home-tab">
-   				 
+   				 <h1>My Profile</h1>
    						 <table class="table table-bordered">
    							 
    							 <tr>
@@ -71,14 +70,15 @@
    							 </tr>
    					 	</table>
    					 	<form th:action="@{/updateUserProfile}" method="post">
-   							  <input class="btn btn-primary" type="submit" value="Update Profile" />
+   							  <input class="btn btn-outline-primary " type="submit" value="Update Profile" />
    					  	</form>
+   					  	<br/>
    				 
    			 </div>
    		 	<div  class="tab-pane fade  show active" id="availableServices"  role="tabpanel" aria-labelledby="nav-profile-tab">
    			 	<h1>Available Services</h1>
    						 <input class="form-control" id="myInput" type="text" placeholder="Type Service Name...">
-   						 <table class="table table-bordered" style="width:100%" id="availableServicesTable">
+   						 <table class="table table-bordered" id="availableServicesTable">
    			         	<thead >
    			             	<tr>
    			                 	<th>Service</th>
@@ -99,7 +99,7 @@
    			                 	<td th:text="${service.userId.name}"></td>
    			                 	<td th:text="${service.userId.contactNumber}"></td>
    			                	<td> <form th:action="@{'/bookService'(serviceProviderId=${service.providedServiceId})}" method="post" >
-   			                			 <input class="btn btn-success" type="submit" value="Book"></input>
+   			                			 <input class="btn btn-sm btn-outline-success btn-block" type="submit" value="Book"></input>
    			                		 </form>
    			                 	</td>
    			             	</tr>
@@ -132,7 +132,7 @@
    				                 	<td th:text="${order.address}"></td>
    				                 	<td th:text="${#temporals.format(order.bookingTime, 'E, hh:mm a, dd-MM-yyyy')}"></td>
    				                 	<td  >
-   					                 	<form class='rating' th:if="${order.status.name() == 'COMPLETED' and order.rating==0.0}" th:action="@{'/updateRating'(id=${order.bookingId},providedServiceId=${order.providedServiceId.providedServiceId})}" method=post>
+   					                 	<form style="text-align: center;" class='rating' th:if="${order.status.name() == 'COMPLETED' and order.rating==0.0}" th:action="@{'/updateRating'(id=${order.bookingId},providedServiceId=${order.providedServiceId.providedServiceId})}" method=post>
    											   <span class="starRating">
    												   <input id="rating5" type="radio" th:name="rating" th:value="5">
    												   <label for="rating5">5</label>
@@ -145,7 +145,7 @@
    												   <input id="rating1" type="radio" th:name="rating" th:value="1">
    												   <label for="rating1">1</label>
    												 </span>
-   											   <input type=submit value="submit"/>
+   											   <input class="btn btn-sm btn-outline-success btn-block" style="margin-top: 10px;" type=submit value="submit"/>
    											 </form>
    											 <p th:unless="${order.status.name() == 'COMPLETED'}">---</p>
    											 <div class="parentOfStar">

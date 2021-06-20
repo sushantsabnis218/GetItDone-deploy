@@ -25,13 +25,13 @@
               	<ul class="navbar-nav ml-auto">
                  	 
                   	<li class="nav-item">
-                 			 <div class="nav nav-links " id="nav-tab" role="tablist" >
-   						 	<a class="nav-item nav-link" style="color:white; margin-right: 10px;" id="nav-home-tab" data-toggle="tab" href="#userProfile" role="tab" aria-controls="nav-home" aria-selected="true">UserProfile</a>
-   						 	<a class="nav-item nav-link " style="color:white; margin-right: 10px;" id="nav-profile-tab" data-toggle="tab" href="#serviceApplication" role="tab" aria-controls="nav-profile" aria-selected="false">ApplyForService</a>
-   						 	<a class="nav-item nav-link" id="nav-contact-tab" style="color:white; margin-right: 10px;" data-toggle="tab" href="#myServices" role="tab" aria-controls="nav-contact" aria-selected="false">MyService</a>
-   						 	<a class="nav-item nav-link active" id="nav-contact-tab" style="color:white; margin-right: 10px;" data-toggle="tab" href="#myOrders" role="tab" aria-controls="nav-contact" aria-selected="false">MyOrders</a>
+                 			 <div class="nav nav-links" id="nav-tab" role="tablist" >
+   						 	<a class="nav-item nav-link btn" style="color:white; margin-right: 10px;" id="nav-home-tab" data-toggle="tab" href="#userProfile" role="tab" aria-controls="nav-home" aria-selected="true">UserProfile</a>
+   						 	<a class="nav-item nav-link  btn" style="color:white; margin-right: 10px;" id="nav-profile-tab" data-toggle="tab" href="#serviceApplication" role="tab" aria-controls="nav-profile" aria-selected="false">ApplyForService</a>
+   						 	<a class="nav-item nav-link  btn" id="nav-contact-tab" style="color:white; margin-right: 10px;" data-toggle="tab" href="#myServices" role="tab" aria-controls="nav-contact" aria-selected="false">MyService</a>
+   						 	<a class="nav-item nav-link btn active" id="nav-contact-tab" style="color:white; margin-right: 10px;" data-toggle="tab" href="#myOrders" role="tab" aria-controls="nav-contact" aria-selected="false">MyOrders</a>
    						 	<form th:action="@{/logout}" method="post">
-   								  <input  class="nav-item nav-link bg-dark" type="submit" value="Sign Out" />
+   								  <button  class="nav-item nav-link btn " style="color: white " type="submit" value="Sign Out">Sign Out</button>
    						  	</form>
    						  </div>
                   	</li>
@@ -50,7 +50,7 @@
 	   	 <div class="tab-content" id="nav-tabContent">
 	    	 
 	   	  	<div class="tab-pane fade" id="userProfile" role="tabpanel" aria-labelledby="nav-home-tab">
-	   			 
+	   			 		<h1>My Profile</h1>
 	   					 <table class="table table-bordered">
 	   						 
 	   						 <tr>
@@ -67,7 +67,7 @@
 	   						 </tr>
 	   				 	</table>
 	   				 	<form th:action="@{/updateUserProfile}" method="post">
-	   						  <input class="btn btn-primary" type="submit" value="Update Profile" />
+	   						  <input class="btn btn-outline-primary" type="submit" value="Update Profile" />
 	   				  	</form>
 	   			 
 	   		 </div>
@@ -100,7 +100,7 @@
 	           	</div>
 	            	
 	   			
-	   			 <input class="btn btn-primary" style="margin-top:5px;" type="submit" value="Submit" />
+	   			 <input class="btn btn-outline-primary" style="margin-top:5px;" type="submit" value="Submit" />
 	   		 </form>
 	    	</div>
 	    	<br/>
@@ -128,7 +128,7 @@
 	   	                 	<td th:text="${service.areaOfService}"></td>
 	   	                 	<td >
 			                    	<form th:action="@{'/deleteProvidedService'(providedServiceId=${service.providedServiceId}, serviceId=${service.serviceId.serviceId})}" method="post" >
-			                    		<input class="btn btn-warning" type="submit" value="Delete"></input>
+			                    		<input class="btn btn-sm btn-warning btn-block" type="submit" value="Delete"></input>
 			                    	</form>
 			                 </td>
 	   	             	</tr>
@@ -139,7 +139,7 @@
 	    	<br/>
 	    	<div  class="tab-pane fade  show active" id="myOrders"  role="tabpanel" aria-labelledby="nav-profile-tab">
 	     	<h1>My Orders</h1>
-	     	<div class=w-25>
+	     	<div >
 	     		<input class="form-control" id="myInput1" type="text" placeholder="Type Service Name...">
 	     	</div>
 	        	<table class="table table-bordered" id="myServicesSearch2">
@@ -173,17 +173,17 @@
 	    					
 	   						 <form th:if="${order.status.name() == 'BOOKED'}" th:action="@{'/changeOrderStatus'(id=${order.bookingId}, num=1)}" method="post">
 	       						 <input type=hidden placeholder="OTP" th:name="otp" value="0"/>
-	       						 <input class="btn btn-success " style="width:90px;margin-top:2%;" type="submit" value="Accept"/>
+	       						 <input class="btn btn-sm btn-outline-success "  style="float:left"" type="submit" value="Accept"/>
 	       					 </form>
 	       					 
 	       					 <form th:if="${order.status.name() == 'BOOKED'}" th:action="@{'/changeOrderStatus'(id=${order.bookingId},num=2)}" method="post">
 	       						 <input type=hidden placeholder="OTP" th:name="otp" value="0"/>
-	       						 <input class="btn btn-danger" style="width:90px;margin-top:2%;;" type="submit" value="Reject"/>
+	       						 <input class="btn btn-sm btn-outline-danger" style="float:right" type="submit" value="Reject"/>
 	       					 </form>
 	       					 
 	       					 <form th:if="${order.status.name() == 'ACCEPTED'}" th:action="@{'/changeOrderStatus'(id=${order.bookingId},num=3)}" method="post">
-	       						 <input  style="width:150px;border-radius:6px; border-width:1px;height:37px;" type=text placeholder="OTP" th:name="otp"/>
-	       						 <input class="btn btn-primary" style="width:100px;" type="submit" value="Completed"/>
+	       						 <input  style="float:left; border-radius: 6px" type=text placeholder="OTP" th:name="otp"/>
+	       						 <input style="float:right;" class="btn btn-sm btn-outline-primary" type="submit" value="Completed"/>
 	       					 </form>
 	       					 <p th:if="${order.status.name() == 'COMPLETED'}">Completed</p>
 	       					 <p th:if="${order.status.name() == 'REJECTED'}">Rejected</p>

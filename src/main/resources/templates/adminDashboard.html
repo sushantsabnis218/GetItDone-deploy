@@ -14,19 +14,23 @@
 		
   
 
-	    <div class="container-fluid" id="welcome_cont">
-	    	<h1 id="welcome_cont_txt">Welcome Admin</h1>
+	    <div id="welcome_cont_txt" style="background-color:#52b4ff; text-align: center;">
+	    	<nobr>Welcome Admin</nobr>
 		</div>
-		<div class="float-right m-2">
-	        <form th:action="@{/logout}" method="post">
-	            <button class='btn btn-success' type="submit" value="Sign Out" >Sign Out</button>
-	        </form>
-	    </div>
-	     <nav class="container-fluid" id="navigation">
+		
+	     <nav class="container-fluid " id="navigation">
+	     
 		  <div class="nav nav-tabs" id="nav-tab" role="tablist">
 		    <a class="nav-item nav-link" id="navtab" data-toggle="tab" href="#users" role="tab" aria-controls="nav-home" aria-selected="true">Users</a>
 		    <a class="nav-item nav-link  active" id="navtab" data-toggle="tab" href="#availableServices" role="tab" aria-controls="nav-profile" aria-selected="false">AvailableServices</a>
 		    <a class="nav-item nav-link" id="navtab" data-toggle="tab" href="#userApplication" role="tab" aria-controls="nav-contact" aria-selected="false">ServiceApplications</a>
+			   
+	        	<form class="ml-auto" th:action="@{/logout}" method="post">
+	            	<button class=" btn btn-success mt-1"  type="submit" value="Sign Out" >Sign Out</button>
+	        	</form>
+	    	
+		    
+		    
 		  </div>
 		 </nav>
 		<div class="tab-content" id="nav-tabContent">
