@@ -41,7 +41,7 @@
       	</div>
   	</nav>
    	  <div class="container-fluid">
-   		 	<header class="jumbotron my-4" style="">
+   		 	<header class="jumbotron my-4" >
    	         	<h1 class="display-3">Welcome to your Taskboard</h1>
    	         	<p class="lead">You can easily manage your current and future tasks.</p>
    	        	 
@@ -173,7 +173,7 @@
 	    					
 	   						 <form th:if="${order.status.name() == 'BOOKED'}" th:action="@{'/changeOrderStatus'(id=${order.bookingId}, num=1)}" method="post">
 	       						 <input type=hidden placeholder="OTP" th:name="otp" value="0"/>
-	       						 <input class="btn btn-sm btn-outline-success "  style="float:left"" type="submit" value="Accept"/>
+	       						 <input class="btn btn-sm btn-outline-success "  style="float:left;" type="submit" value="Accept"/>
 	       					 </form>
 	       					 
 	       					 <form th:if="${order.status.name() == 'BOOKED'}" th:action="@{'/changeOrderStatus'(id=${order.bookingId},num=2)}" method="post">
