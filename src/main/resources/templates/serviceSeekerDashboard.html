@@ -132,7 +132,7 @@
    				                 	<td th:text="${order.address}"></td>
    				                 	<td th:text="${#temporals.format(order.bookingTime, 'E, hh:mm a, dd-MM-yyyy')}"></td>
    				                 	<td  >
-   					                 	<form style="text-align: center;" class='rating' th:if="${order.status.name() == 'COMPLETED' and order.rating==0.0}" th:action="@{'/updateRating'(id=${order.bookingId},providedServiceId=${order.providedServiceId.providedServiceId})}" method=post>
+   					                 	<form  class='rating' th:if="${order.status.name() == 'COMPLETED' and order.rating==0.0}" th:action="@{'/updateRating'(id=${order.bookingId},providedServiceId=${order.providedServiceId.providedServiceId})}" method=post>
    											   <span class="starRating">
    												   <input id="rating5" type="radio" th:name="rating" th:value="5">
    												   <label for="rating5">5</label>
@@ -145,7 +145,7 @@
    												   <input id="rating1" type="radio" th:name="rating" th:value="1">
    												   <label for="rating1">1</label>
    												 </span>
-   											   <input class="btn btn-sm btn-outline-success btn-block" style="margin-top: 10px;" type=submit value="submit"/>
+   											   <input class="btn btn-sm btn-outline-success btn-block"  type=submit value="submit"/>
    											 </form>
    											 <p th:unless="${order.status.name() == 'COMPLETED'}">---</p>
    											 <div class="parentOfStar">

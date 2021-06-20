@@ -173,17 +173,17 @@
 	    					
 	   						 <form th:if="${order.status.name() == 'BOOKED'}" th:action="@{'/changeOrderStatus'(id=${order.bookingId}, num=1)}" method="post">
 	       						 <input type=hidden placeholder="OTP" th:name="otp" value="0"/>
-	       						 <input class="btn btn-sm btn-outline-success "  style="float:left;" type="submit" value="Accept"/>
+	       						 <input class="btn btn-sm btn-outline-success "  style="width:90px; margin-top:2px;" type="submit" value="Accept"/>
 	       					 </form>
 	       					 
 	       					 <form th:if="${order.status.name() == 'BOOKED'}" th:action="@{'/changeOrderStatus'(id=${order.bookingId},num=2)}" method="post">
 	       						 <input type=hidden placeholder="OTP" th:name="otp" value="0"/>
-	       						 <input class="btn btn-sm btn-outline-danger" style="float:right" type="submit" value="Reject"/>
+	       						 <input class="btn btn-sm btn-outline-danger" style="width:90px; margin-top:2px;" type="submit" value="Reject"/>
 	       					 </form>
 	       					 
 	       					 <form th:if="${order.status.name() == 'ACCEPTED'}" th:action="@{'/changeOrderStatus'(id=${order.bookingId},num=3)}" method="post">
-	       						 <input  style="float:left; border-radius: 6px" type=text placeholder="OTP" th:name="otp"/>
-	       						 <input style="float:right;" class="btn btn-sm btn-outline-primary" type="submit" value="Completed"/>
+	       						 <input  style="width:150px; border-radius: 6px; border-width:1px;height:37px;" type=number placeholder="OTP" th:name="otp" min=1000 max=9999 required/>
+	       						 <input  class="btn btn-sm btn-outline-primary" style="width:100px; margin-top:2px;" type="submit" value="Completed"/>
 	       					 </form>
 	       					 <p th:if="${order.status.name() == 'COMPLETED'}">Completed</p>
 	       					 <p th:if="${order.status.name() == 'REJECTED'}">Rejected</p>
