@@ -99,7 +99,7 @@
    			                 	<td th:text="${service.userId.name}"></td>
    			                 	<td th:text="${service.userId.contactNumber}"></td>
    			                	<td> <form th:action="@{'/bookService'(serviceProviderId=${service.providedServiceId})}" method="post" >
-   			                			 <input class="btn btn-sm btn-outline-success btn-block" type="submit" value="Book"></input>
+   			                			 <input class="btn btn-sm btn-outline-success btn-block" type="submit" value="Book">
    			                		 </form>
    			                 	</td>
    			             	</tr>
@@ -113,7 +113,7 @@
    				     	<table class="table table-bordered" >
    				         	<thead >
    				             	<tr>
-   				                 	<th>Provider Email</th>
+   				                 	<th>Provider Name</th>
    				                 	<th>Provider Contact</th>
    				                 	<th>Service Title</th>
    				                 	<th>Address</th>
@@ -126,7 +126,7 @@
    				         	</thead>
    				         	<tbody>
    				             	<tr th:each="order: ${myBookings}">
-   				                 	<td th:text="${order.providedServiceId.userId.email}"></td>
+   				                 	<td th:text="${order.providedServiceId.userId.name}"></td>
    				                 	<td th:text="${order.providedServiceId.userId.contactNumber}"></td>
    				                 	<td th:text="${order.providedServiceId.serviceId.title}"></td>
    				                 	<td th:text="${order.address}"></td>

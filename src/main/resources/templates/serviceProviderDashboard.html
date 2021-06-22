@@ -112,7 +112,7 @@
 	   	     	<table class="table table-bordered" id="myServicesSearch">
 	   	         	<thead >
 	   	             	<tr>
-	   	                 	<th>Service Id</th>
+	   	                 	<th>Service Title</th>
 	   	                 	<th>AvgRating</th>
 	   	                 	<th>CostPerHour</th>
 	   	                 	<th>AreaOfService</th>
@@ -128,7 +128,7 @@
 	   	                 	<td th:text="${service.areaOfService}"></td>
 	   	                 	<td >
 			                    	<form th:action="@{'/deleteProvidedService'(providedServiceId=${service.providedServiceId}, serviceId=${service.serviceId.serviceId})}" method="post" >
-			                    		<input class="btn btn-sm btn-warning btn-block" type="submit" value="Delete"></input>
+			                    		<input class="btn btn-sm btn-warning btn-block" type="submit" value="Delete">
 			                    	</form>
 			                 </td>
 	   	             	</tr>
@@ -145,7 +145,7 @@
 	        	<table class="table table-bordered" id="myServicesSearch2">
 	            	<thead >
 	                	<tr>
-	                    	<th>Seeker Email</th>
+	                    	<th>Seeker Name</th>
 	                    	<th>Seeker Contact</th>
 	                    	<th>Service Title</th>
 	                    	<th>Address</th>
@@ -157,7 +157,7 @@
 	            	</thead>
 	            	<tbody>
 	                	<tr th:each="order: ${myOrders}">
-	                    	<td th:text="${order.userId.email}"></td>
+	                    	<td th:text="${order.userId.name}"></td>
 	                    	<td th:text="${order.userId.contactNumber}"></td>
 	                    	<td th:text="${order.providedServiceId.serviceId.title}"></td>
 	                    	<td th:text="${order.address}"></td>

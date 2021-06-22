@@ -47,7 +47,6 @@
 				                    <th>Name</th>
 				                    <th>Contact</th>
 				                    <th>Address</th>
-				                    <th>Active Status</th>
 				                </tr>
 				            </thead>
 				            <tbody>
@@ -57,7 +56,6 @@
 				                    <td th:text="${user.name}">First Name</td>
 				                    <td th:text="${user.contactNumber}">ContactNumber</td>
 				                    <td class="text-capitalize" th:text="${user.address}">Address</td>
-				                    <td th:text="${user.activeStatus}">Active Status</td>
 				                </tr>
 				            </tbody>
 				        </table>
@@ -98,7 +96,7 @@
 			                    
 			                    <td >
 			                    	<form th:action="@{'/deleteService'(serviceId=${service.serviceId})}" method="post" >
-			                    		<input class="btn btn-warning" type="submit" value="Delete"></input>
+			                    		<input class="btn btn-warning" type="submit" value="Delete">
 			                    	</form>
 			                    </td>
 			                </tr>
